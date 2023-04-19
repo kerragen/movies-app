@@ -1,0 +1,11 @@
+.spinner {
+  position: fixed;
+  top: 45%;
+}
+
+@media screen and (max-width: 768px) {
+  .spinner {
+    position: fixed;
+    right: 37%;
+  }
+}

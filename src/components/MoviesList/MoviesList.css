@@ -1,0 +1,18 @@
+.movies-list {
+  display: flex;
+  margin-top: 32px;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 1010px;
+  gap: 35px 36px;
+  margin-bottom: 21px;
+}
+
+@media screen and (max-width: 768px) {
+  .movies-list {
+    display: flex;
+    width: 388px;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
