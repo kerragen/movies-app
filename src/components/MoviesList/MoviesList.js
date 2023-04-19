@@ -72,7 +72,6 @@ export default class MoviesList extends Component {
           if (items.total_results > 10000) {
             items.total_results = 10000
           }
-          console.log(items)
           this.setState({
             movies: items.results,
             loading: false,
@@ -118,7 +117,6 @@ export default class MoviesList extends Component {
         <li key={item.id} className="movie">
           <MoviesServiceConsumer>
             {([genresAll, moviesService, guestSessionId]) => {
-              //здесь мы берем жанры из провайдера
               return (
                 <Movie
                   title={item.title}

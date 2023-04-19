@@ -60,7 +60,14 @@ export default class App extends Component {
       <div className="main">
         <MoviesServiceProvider value={[this.state.genres, this.moviesService, this.state.guestSessionId]}>
           <Online>
-            <Tabs defaultActiveKey="1" centered items={items} className="tabs" size="large" />
+            <Tabs
+              defaultActiveKey="1"
+              centered
+              items={items}
+              className="tabs"
+              size="large"
+              destroyInactiveTabPane="true"
+            />
           </Online>
           <Offline>
             <ErrorNetwork />
