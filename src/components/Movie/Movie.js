@@ -25,17 +25,18 @@ export default class Movie extends Component {
     const urlImg = 'https://image.tmdb.org/t/p/original'
 
     const cutDescription = (string) => {
-      if (string.length < 120) {
+      if (string.length < 100) {
         return string
       }
       if (!string) {
         return 'No overview here, sorry'
       }
-      return `${string.split('').slice(0, 120).join('')}...`
+      return `${string.split('').slice(0, 100).join('')}...`
     }
 
     const onRated = (value) => {
       if (value === 0) {
+        localStorage.removeItem(movieId)
         return moviesService.deleteRate(movieId, guestSessionId)
       } else {
         localStorage.setItem(movieId, value)
@@ -82,7 +83,7 @@ export default class Movie extends Component {
           <span className="movie__date">{date ? format(new Date(date), 'MMMM dd, yyyy') : 'No date'}</span>
           <div className="movie__genres">{genres}</div>
           <div className="movie__description">{cutDescription(description)}</div>
-          <Rate className="movie__rate" defaultValue={starRate} onChange={(value) => onRated(value)} count={10} />
+          <Rate className="movie__rate" defaultValue={starRate} onChange={onRated} count={10} />
         </div>
       </div>
     )

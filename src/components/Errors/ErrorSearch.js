@@ -6,7 +6,7 @@ const ErrorSearch = () => (
       width: '100%',
     }}
   >
-    <Alert message="Error" description="Nothing was found" type="error" showIcon />
+    <Alert message="Oops!" description="Nothing was found" type="info" showIcon />
   </Space>
 )
 export default ErrorSearch

@@ -2,7 +2,7 @@
   display: flex;
   width: 454px;
   height: 281px;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .movie__img-content {
@@ -62,7 +62,6 @@
   line-height: 22px;
   max-height: 70px;
   flex-shrink: 0;
-  overflow: hidden;
 }
 
 .movie__rating {
@@ -93,6 +92,7 @@
 @media screen and (max-width: 768px) {
   .movie {
     width: 387px;
+    height: 245px;
   }
 
   .movie__img-content {
@@ -103,6 +103,10 @@
 
   .movie__content {
     padding: 0 20px 0 5px;
+  }
+
+  .movie__description {
+    margin-left: -70px;
   }
 
   .movie__rate {

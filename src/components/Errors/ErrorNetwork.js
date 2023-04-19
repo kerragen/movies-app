@@ -4,6 +4,7 @@ const ErrorNetwork = () => (
     direction="vertical"
     style={{
       width: '100%',
+      bottom: '500px',
     }}
   >
     <Alert message="Network error" description="Connect to the internet to load the page" type="error" showIcon />
