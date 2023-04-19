@@ -44,13 +44,11 @@ export default class App extends Component {
   componentDidMount() {
     localStorage.clear()
     this.moviesService.createGuestSession().then((response) => {
-      console.log(response)
       this.setState({
         guestSessionId: response.guest_session_id,
       })
     })
     this.moviesService.getGenre().then((response) => {
-      console.log(response)
       this.setState({
         genres: response.genres,
       })
