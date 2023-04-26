@@ -2,21 +2,19 @@ import { Component } from 'react'
 import { Pagination } from 'antd'
 import PropTypes from 'prop-types'
 
-import MoviesService from '../../services/MoviesService'
 import Movie from '../Movie/Movie'
 import Spinner from '../Spinner/Spinner'
 import MovieSearch from '../MovieSearch/MovieSearch'
-import ErrorLoad from '../Errors/ErrorLoad'
-import ErrorSearch from '../Errors/ErrorSearch'
+import ErrorAlert from '../Errors/ErrorAlert'
 import './MoviesList.css'
 import { MoviesServiceConsumer } from '../Movies-service-context/Movies-service-context'
 
 export default class MoviesList extends Component {
-  moviesService = new MoviesService()
-
   static propTypes = {
     name: PropTypes.string,
     guestSessionId: PropTypes.string,
+    moviesServiceData: PropTypes.object,
+    moviesServiceSession: PropTypes.object,
   }
 
   state = {
@@ -66,7 +64,7 @@ export default class MoviesList extends Component {
       notFound: false,
     })
     if (this.props.name === 'Search') {
-      this.moviesService
+      this.props.moviesServiceData
         .getMovies(this.state.query, this.state.page)
         .then((items) => {
           if (items.total_results > 10000) {
@@ -87,7 +85,7 @@ export default class MoviesList extends Component {
         })
         .catch(this.onError)
     } else {
-      this.moviesService
+      this.props.moviesServiceSession
         .getRatedMovies(this.props.guestSessionId, this.state.page)
         .then((items) => {
           if (!items.total_results) {
@@ -116,7 +114,7 @@ export default class MoviesList extends Component {
       return (
         <li key={item.id} className="movie">
           <MoviesServiceConsumer>
-            {([genresAll, moviesService, guestSessionId]) => {
+            {([genresAll, moviesServiceSession, guestSessionId]) => {
               return (
                 <Movie
                   title={item.title}
@@ -128,7 +126,7 @@ export default class MoviesList extends Component {
                   genreIds={item.genre_ids}
                   guestSessionId={guestSessionId}
                   movieId={item.id}
-                  moviesService={moviesService}
+                  moviesServiceSession={moviesServiceSession}
                 />
               )
             }}
@@ -139,8 +137,8 @@ export default class MoviesList extends Component {
 
     const spinner = loading ? <Spinner /> : null
     const content = !loading ? [el] : null
-    const errorLoad = error ? <ErrorLoad /> : null
-    const errorSearch = notFound ? <ErrorSearch /> : null
+    const errorLoad = error ? <ErrorAlert message="Load error" description="No data" type="error" /> : null
+    const errorSearch = notFound ? <ErrorAlert message="Oops!" description="Nothing was found" type="info" /> : null
 
     return (
       <div className="container">

@@ -15,12 +15,22 @@ export default class Movie extends Component {
     avgRate: PropTypes.number,
     guestSessionId: PropTypes.string,
     movieId: PropTypes.number,
-    moviesService: PropTypes.object,
+    moviesServiceSession: PropTypes.object,
   }
 
   render() {
-    const { title, date, description, poster, genresAll, genreIds, avgRate, guestSessionId, movieId, moviesService } =
-      this.props
+    const {
+      title,
+      date,
+      description,
+      poster,
+      genresAll,
+      genreIds,
+      avgRate,
+      guestSessionId,
+      movieId,
+      moviesServiceSession,
+    } = this.props
 
     const urlImg = 'https://image.tmdb.org/t/p/original'
 
@@ -37,10 +47,10 @@ export default class Movie extends Component {
     const onRated = (value) => {
       if (value === 0) {
         localStorage.removeItem(movieId)
-        return moviesService.deleteRate(movieId, guestSessionId)
+        return moviesServiceSession.deleteRate(movieId, guestSessionId)
       } else {
         localStorage.setItem(movieId, value)
-        return moviesService.postRate(movieId, guestSessionId, value)
+        return moviesServiceSession.postRate(movieId, guestSessionId, value)
       }
     }
 
