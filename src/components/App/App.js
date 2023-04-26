@@ -38,11 +38,11 @@ export default class App extends Component {
         label: 'Search',
         children: (
           <MoviesServiceConsumer>
-            {([, , guestSessionId]) => {
+            {([, moviesServiceSession, guestSessionId]) => {
               return (
                 <MoviesList
                   moviesServiceData={this.moviesServiceData}
-                  moviesServiceSession={this.moviesServiceSession}
+                  moviesServiceSession={moviesServiceSession}
                   guestSessionId={guestSessionId}
                   name={items[0].label}
                 />
